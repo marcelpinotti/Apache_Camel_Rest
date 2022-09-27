@@ -6,7 +6,9 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.dataformat.JsonLibrary;
 import org.apache.camel.model.rest.RestBindingMode;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MyFirstRoute extends RouteBuilder {
     @Override
     public void configure() throws Exception {
@@ -39,8 +41,7 @@ public class MyFirstRoute extends RouteBuilder {
                 .unmarshal() // Faz a transformação de mensagens (transforma dados recebidos pela rede)
                 .json(JsonLibrary.Jackson, UserDTO[].class) // Formato de conversão
                 .process(exchange -> exchange.getIn().getBody(UserDTO[].class)); // É um nó capaz de usar, criar ou
-        // modificar uma troca recebida.
-    }
+                // modificar uma troca recebida.
 
     }
 }
