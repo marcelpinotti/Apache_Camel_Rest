@@ -18,11 +18,35 @@
 	</properties>
 	<dependencies>
 		<dependency>
+			<!--Permite que o Camel implante o Tomcat incorporado-->
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-servlet</artifactId>
+			<version>3.18.2</version>
+		</dependency>
+		<dependency>
+			<!--Permite que o Camel empacote de/para JSON-->
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-jackson</artifactId>
+			<version>3.18.1</version>
+		</dependency>
+		<dependency>
+			<!--Fornece terminais baseados em HTTP para chamar recursos HTTP externos-->
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-http</artifactId>
+			<version>3.18.1</version>
+		</dependency>
+		<dependency>
+			<!-- Spring Boot fornece configuração automática para o Apache Camel,detecta automaticamente as rotas Camel
+			 disponíveis no contexto (como modelo de produtor, modelo de consumidor e conversor de tipo)-->
 			<groupId>org.apache.camel.springboot</groupId>
 			<artifactId>camel-spring-boot-starter</artifactId>
 			<version>3.18.1</version>
 		</dependency>
-
+		<dependency>
+			<!--O contêiner da web mantém a JVM em execução (Spring Boot standalone "autônomo")-->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
