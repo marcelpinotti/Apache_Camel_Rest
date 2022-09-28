@@ -2,9 +2,12 @@ package br.com.marcelpinotti.camelspring.route;
 
 import br.com.marcelpinotti.camelspring.model.UserDTO;
 import org.apache.camel.Exchange;
+import org.apache.camel.Expression;
+import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.dataformat.JsonLibrary;
 import org.apache.camel.model.rest.RestBindingMode;
+import org.apache.camel.model.rest.RestParamType;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 
@@ -21,27 +24,45 @@ public class MyFirstRoute extends RouteBuilder {
                 .bindingMode(RestBindingMode.auto);
 
         // Define os rest services (endpoints que serão usados no Controller)
-        rest()
-                .path("/api")
+        rest("/api")
                 .produces(MediaType.APPLICATION_JSON_VALUE)
                 .consumes(MediaType.APPLICATION_JSON_VALUE)
+
                 // (Métodos e rotas do Controller)
-                .get()
+
+                .get("/camel-users")
                 .id("rest-camel-users") // id: Identificação da rota (funciona sem, no console aparece routeNº)
-                .path("/camel-users")
-                .to("direct:rest-api-users"); // direct: invocação direta e síncrona de qualquer consumidor
+                .to("direct:rest-api-users") // direct: invocação direta e síncrona de qualquer consumidor
                 // quando um produtor envia uma troca de mensagens
+
+                .get("/camel-user/{id}")
+                .id("rest-camel-user-id")
+                .param() // Identifica que existe parâmetro
+                .name("id") // Identifica qual é o parâmetro
+                .type(RestParamType.path) // Identifica de onde vem o parâmetro
+                .description("O id do usuário a ser obtido")
+                .endParam()
+                .to("direct:rest-api-user-id");
 
         // Define de onde os dados serão consumidos
         from("direct:rest-api-users")
                 .id("rest-api-users")
-                .log("Inicializando JsonView Api Route")
-                .setHeader(Exchange.HTTP_METHOD, constant("GET")) // Definição do método de solicitação HTTP
+                .log("Inicializando Rota GET de Users")
+                .setHeader(Exchange.HTTP_METHOD, constant("GET"))// Definição do método de solicitação HTTP
                 .to("http://localhost:3000/api/users") // Uri de consumo
                 .unmarshal() // Faz a transformação de mensagens (transforma dados recebidos pela rede)
                 .json(JsonLibrary.Jackson, UserDTO[].class) // Formato de conversão
                 .process(exchange -> exchange.getIn().getBody(UserDTO[].class)); // É um nó capaz de usar, criar ou
                 // modificar uma troca recebida.
 
+        from("direct:rest-api-user-id")
+                .id("rest-api-user-id")
+                .log("Inicializando Rota GET de User por id")
+                .setHeader(Exchange.HTTP_METHOD, constant("GET"))
+                .setHeader(Exchange.HTTP_PATH, simple("${header.id}")) // Informa e busca dados dinâmicos da url
+                .to("http://localhost:3000/api/user/") // O DSL to (Url+${header.id}) também poderia ser sem o DSL setHeader acima
+                .unmarshal()
+                .json(JsonLibrary.Jackson, UserDTO.class)
+                .process(exchange -> exchange.getIn().getBody(UserDTO.class));
     }
 }
