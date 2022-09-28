@@ -44,4 +44,12 @@ public class CamelController {
         return template.requestBodyAndHeader("direct:rest-api-user-id", response, "id", id);
     }
 
+    @GetMapping("/camel-cep/{cep}")
+    public Object getCep(@PathVariable("cep") String cep){
+        final Exchange response = ExchangeBuilder
+                .anExchange(context)
+                .build();
+        return template.requestBodyAndHeader("direct:rest-api-user-id", response, "cep", cep);
+    }
+
 }

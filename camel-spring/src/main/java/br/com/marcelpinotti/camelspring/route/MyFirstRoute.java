@@ -42,7 +42,16 @@ public class MyFirstRoute extends RouteBuilder {
                 .type(RestParamType.path) // Identifica de onde vem o parâmetro
                 .description("O id do usuário a ser obtido")
                 .endParam()
-                .to("direct:rest-api-user-id");
+                .to("direct:rest-api-user-id")
+
+                .get("/camel-cep/{cep}")
+                .id("rest-camel-cep")
+                .param()
+                .name("cep")
+                .type(RestParamType.path)
+                .description("O dados do cep são retornados")
+                .endParam()
+                .to("direct:rest-api-viaCep");
 
         // Define de onde os dados serão consumidos
         from("direct:rest-api-users")
