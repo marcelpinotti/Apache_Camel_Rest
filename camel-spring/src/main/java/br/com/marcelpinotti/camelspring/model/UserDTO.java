@@ -14,15 +14,18 @@ public class UserDTO {
     private String email;
     @JsonProperty("password")
     private String password;
+    @JsonProperty("cep")
+    private String cep;
 
     public UserDTO(){}
 
-    public UserDTO(Long id, String name, String lastname, String email, String password) {
+    public UserDTO(Long id, String name, String lastname, String email, String password, String cep) {
         this.id = id;
         this.name = name;
         this.lastname = lastname;
         this.email = email;
         this.password = password;
+        this.cep = cep;
     }
 
     public Long getId() {
@@ -63,5 +66,13 @@ public class UserDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 }

@@ -49,7 +49,15 @@ public class CamelController {
         final Exchange response = ExchangeBuilder
                 .anExchange(context)
                 .build();
-        return template.requestBodyAndHeader("direct:rest-api-user-id", response, "cep", cep);
+        return template.requestBodyAndHeader("direct:rest-api-viaCep", response, "cep", cep);
+    }
+
+    @GetMapping("/camel-userViaCep/{id}")
+    public Object getUserViaCep(@PathVariable("id") Long id){
+        final Exchange response = ExchangeBuilder
+                .anExchange(context)
+                .build();
+        return template.requestBodyAndHeader("direct:rest-api-user-viaCep", response, "id", id);
     }
 
 }
