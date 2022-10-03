@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 // Anotação: Lida com campos desconhecidos em Nível de Classe
 // Trata a Exceção UnrecognizedPropertyException: Unrecognized field
-
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ViaCepDTO {
 

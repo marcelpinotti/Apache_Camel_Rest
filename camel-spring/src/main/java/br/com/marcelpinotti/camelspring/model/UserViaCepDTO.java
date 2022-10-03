@@ -1,7 +1,6 @@
 package br.com.marcelpinotti.camelspring.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.apache.camel.builder.ValueBuilder;
 
 public class UserViaCepDTO {
         @JsonProperty("id")
