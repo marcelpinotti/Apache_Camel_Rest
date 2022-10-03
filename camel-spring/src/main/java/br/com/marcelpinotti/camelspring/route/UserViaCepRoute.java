@@ -49,7 +49,7 @@ public class UserViaCepRoute extends RouteBuilder {
                         UserViaCepDTO userCep = oldExchange.getIn().getBody(UserViaCepDTO.class);
                         ViaCepDTO viaCepDTO = newExchange.getIn().getBody(ViaCepDTO.class);
 
-                        userCep.setEndereco(viaCepDTO);
+                        userCep.setAddress(viaCepDTO);
 
                         newExchange.getIn().setBody(userCep);
 
