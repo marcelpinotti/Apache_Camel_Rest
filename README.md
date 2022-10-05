@@ -13,6 +13,7 @@
 #### 📋 A Aplicação: ####
 
 - Como os estudos são iniciais, a aplicação expõe endpoints utilizando o Método GET do protocolo HTTP.
+- Deixei o código comentado para me auxiliar no entendimento da construção da aplicação.
 
 ✒️ Consome dados da API Mockada no Mockoon:
 
@@ -21,14 +22,14 @@ Endpoint do Mockoon (GET): http://localhost:3000/api/users
 Endpoint do Camel (GET): http://localhost:8081/api/camel-users
 Estrutura de dados:
 [
-	{
-  		"id": "number",
-  		"name": "string",
-  		"lastname": "string",
-  		"email": "string",
-  		"password":"string",
-  		"cep":"string"
-	}
+   {
+      "id": "number",
+      "name": "string",
+      "lastname": "string",
+      "email": "string",
+      "password":"string",
+      "cep":"string"
+   }
 ]
 ```
 ``` 
@@ -36,12 +37,12 @@ Endpoint(GET): http://localhost:3000/api/user/{id}
 Endpoint do Camel (GET): http://localhost:8081/api/camel-user/{id}
 Estrutura de dados:
 {
-  	"id": "number",
-  	"name": "string",
-  	"lastname": "string",
-  	"email": "string",
-  	"password":"string",
-  	"cep":"string"
+    "id": "number",
+    "name": "string",
+    "lastname": "string",
+    "email": "string",
+    "password":"string",
+    "cep":"string"
 }
 ```
 
@@ -51,7 +52,7 @@ Estrutura de dados:
 Endpoint do ViaCep (GET): http://viacep.com.br/ws/{cep}/json/
 Estrutura de dados:
 {
-	"cep": "string",
+    "cep": "string",
     "logradouro": "string",
     "complemento": "string",
     "bairro": "string",
@@ -66,7 +67,7 @@ Estrutura de dados:
 Endpoint do Camel (GET): http://localhost:8081/api/camel-cep/{cep}
 Estrutura de dados:
 {
-  	"cep": "string",
+    "cep": "string",
     "logradouro": "string",
     "complemento": "string",
     "bairro": "string",
@@ -82,10 +83,10 @@ Endpoint do Camel (GET): http://localhost:8081/api/camel-userViaCep/{id_do_user}
 Estrutura de dados:
 {
     "id": "number",
-  	"name": "string",
-  	"lastname": "string",
-  	"email": "string",
-  	"password":"string",
+    "name": "string",
+    "lastname": "string",
+    "email": "string",
+    "password":"string",
     "address": {
         "cep": "string",
     	"logradouro": "string",
@@ -117,13 +118,13 @@ Os desafios foram:
 
 ### 📋 Principais Referências ###
 
-1. Documentação: https://camel.apache.org/
+1. [Documentação Apache Camel](https://camel.apache.org/)
 
-2. Conceito: https://www.cybermedian.com/pt/enterprise-integration-patterns-eip-tutorial/
+2. [Conceito EIPs](https://www.cybermedian.com/pt/enterprise-integration-patterns-eip-tutorial/)
 
-3. Conceito: https://dzone.com/articles/open-source-integration-apache
+3. [Conceito EIPs](https://dzone.com/articles/open-source-integration-apache)
 
-4. Exemplo: https://dev.to/thegusmao/utilizando-apachel-camel-para-agregar-endpoints-de-rest-apis-4pan#:~:text=Nossa%20aplica%C3%A7%C3%A3o%20Camel%20vai%20disponibilizar%20dois%20endpoints%3A%201,os%20livros%20do%20autor%20na%20API%20de%20livros.
+4. [Exemplo de Implementação Apache Camel](https://dev.to/thegusmao/utilizando-apachel-camel-para-agregar-endpoints-de-rest-apis-4pan#:~:text=Nossa%20aplica%C3%A7%C3%A3o%20Camel%20vai%20disponibilizar%20dois%20endpoints%3A%201,os%20livros%20do%20autor%20na%20API%20de%20livros.)
 
-5. Youtube: https://www.youtube.com/watch?v=X_351K0WS4g&t=1264s
+5. [Youtube - Apache Camel](https://www.youtube.com/watch?v=X_351K0WS4g&t=1264s)
 
